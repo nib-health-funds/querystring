@@ -71,3 +71,15 @@ exports.stringify = function(obj){
 
   return pairs.join('&');
 };
+
+/**
+ * Build a url including a query string given `obj`.
+ *
+ * @param {Object} obj
+ * @return {String}
+ * @api public
+ */
+ 
+exports.buildUrl = function(baseUrl,obj){
+  return baseUrl.replace(/\/$/, "") + '?' + exports.stringify(obj);
+};
