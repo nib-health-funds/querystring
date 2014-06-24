@@ -36,4 +36,18 @@ describe('.stringify(obj)', function(){
         .to.eql('items%5B0%5D=1&items%5B1%5D=2&items%5B2%5D=3&key=b');
     })
   })
+
+  describe('when a string url without a trailing slash and object with arrays is given', function () {
+    it('should return a url with a concatenated querystring', function () {
+      expect(query.buildUrl('base/url',{ items: [1, 2, 3], key: 'b' }))
+        .to.eql('base/url?items%5B0%5D=1&items%5B1%5D=2&items%5B2%5D=3&key=b');
+    })
+  })
+
+  describe('when a string url with a trailing slash and object with arrays is given', function () {
+    it('should return a url with a concatenated querystring', function () {
+      expect(query.buildUrl('base/url/', { items: [1, 2, 3], key: 'b' }))
+        .to.eql('base/url?items%5B0%5D=1&items%5B1%5D=2&items%5B2%5D=3&key=b');
+    })
+  })
 })
